@@ -30,12 +30,13 @@ class Kele
     JSON.parse(response.body)
   end
 
-  def create_message(sender, recipient_id, subject, message)
+  def create_message(sender, recipient_id, token, subject, message)
     self.class.post("#{@bloc_api}/messages",
     headers: { "authorization" => @auth_token },
     body: {
       "sender": sender,
       "recipient_id": recipient_id,
+      "token": token,
       "subject": subject,
       "stripped-text": message.strip
     })
